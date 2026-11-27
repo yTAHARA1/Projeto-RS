@@ -7,7 +7,6 @@ if (typeof mobileMenu.showModal === 'function') {
   const menuItems = [menuClose, ...mobileMenu.querySelectorAll('a')];
   const mobileWidth = matchMedia('(max-width: 45rem)');
   let sectionAfterClose;
-  homeHeader.classList.add('navigation-ready');
   menuToggle.addEventListener('click', () => {
     mobileMenu.showModal();
     menuToggle.setAttribute('aria-expanded', 'true');
@@ -58,14 +57,17 @@ if ('IntersectionObserver' in window) {
   const visibleSections = new Set();
   let engagedSection;
   function updateActiveSection() {
-    const current = (visibleSections.has(engagedSection)
-      ? engagedSection
+    const anchor = sections.find(section => '#' + section.id === location.hash);
+    const preferred = visibleSections.has(anchor) ? anchor : engagedSection;
+    const current = (visibleSections.has(preferred)
+      ? preferred
       : sections.find(section => visibleSections.has(section)))?.id;
     for (const link of sectionLinks) {
       if (link.dataset.section === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     }
   }
+  window.addEventListener('hashchange', updateActiveSection);
   const sectionObserver = new IntersectionObserver(entries => {
     for (const { target, isIntersecting } of entries) {
       if (isIntersecting) visibleSections.add(target);

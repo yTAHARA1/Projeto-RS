@@ -12,9 +12,15 @@
   <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="assets/logo-renan-192.webp" type="image/webp">
+  <script>
+    if (typeof window.HTMLDialogElement?.prototype.showModal === 'function') {
+      document.documentElement.classList.add('navigation-ready');
+    }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <script src="checkout.js" defer></script>
   <script src="site.js" defer></script>
+  <script src="reviews.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -28,6 +34,7 @@
         <a href="combo.html" data-track-campaign data-section="combo">E-books</a>
         <a href="agendamento.html" data-track-campaign data-section="atendimento">Atendimento</a>
         <a href="#sobre" data-section="sobre">Sobre</a>
+        <a href="#avaliacoes" data-section="avaliacoes">Avaliações</a>
         <a href="#duvidas" data-section="duvidas">Dúvidas</a>
       </nav>
       <a class="header-profile" href="https://www.instagram.com/psico.renansemolini/">Instagram</a>
@@ -44,6 +51,7 @@
       <a href="combo.html" data-track-campaign data-section="combo">E-books</a>
       <a href="agendamento.html" data-track-campaign data-section="atendimento">Atendimento</a>
       <a href="#sobre" data-section="sobre">Sobre</a>
+      <a href="#avaliacoes" data-section="avaliacoes">Avaliações</a>
       <a href="#duvidas" data-section="duvidas">Dúvidas</a>
       <a href="https://www.instagram.com/psico.renansemolini/">Instagram</a>
     </nav>
@@ -61,10 +69,11 @@
             </span>
             <a class="button button-outline" data-track-campaign href="agendamento.html">Ver atendimento</a>
           </div>
-          <ul class="hero-trust" aria-label="Informações profissionais e de compra">
+          <ul class="hero-trust" aria-label="Informações profissionais, de compra e avaliações">
             <li>CRP 06/212612</li>
             <li>Atendimento online</li>
             <li id="compra-kiwify">Compra pela Kiwify</li>
+            <li class="hero-trust-review"><a href="#avaliacoes"><svg aria-hidden="true" width="14" height="14"><use href="#review-star"></use></svg>5,0 · 22 avaliações no Google</a></li>
           </ul>
         </div>
         <div class="hero-visual">
@@ -141,6 +150,44 @@
           <p>No Instagram, Renan fala sobre psicologia dos relacionamentos gays e aborda temas como intimidade, solidão, apego e medo de rejeição.</p>
           <a class="text-link" href="https://www.instagram.com/psico.renansemolini/">Acompanhar @psico.renansemolini</a>
         </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="avaliacoes" aria-labelledby="reviews-title" tabindex="-1">
+      <div class="wrap">
+        <div class="reviews-overview">
+          <div data-review-enter>
+            <h2 id="reviews-title">Avaliações</h2>
+            <div class="reviews-rating">
+              <p class="reviews-score">5,0</p>
+              <div>
+                <span class="reviews-stars" role="img" aria-label="5 de 5 estrelas">
+                  <svg aria-hidden="true" width="20" height="20"><symbol id="review-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.4 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9Z"/></symbol><use href="#review-star"></use></svg>
+                  <svg aria-hidden="true" width="20" height="20"><use href="#review-star"></use></svg>
+                  <svg aria-hidden="true" width="20" height="20"><use href="#review-star"></use></svg>
+                  <svg aria-hidden="true" width="20" height="20"><use href="#review-star"></use></svg>
+                  <svg aria-hidden="true" width="20" height="20"><use href="#review-star"></use></svg>
+                </span>
+                <p class="reviews-count">22 avaliações no Google</p>
+              </div>
+            </div>
+          </div>
+          <div class="reviews-actions" data-review-enter>
+            <a class="button button-dark" data-google-review="read" href="https://www.google.com/maps/search/?api=1&amp;query=Renan+Semolini+Psic%C3%B3logo" target="_blank" rel="noopener">Ver todas no Google</a>
+            <a class="button button-outline" data-google-review="write" role="link" aria-disabled="true" target="_blank" rel="noopener">Avaliar no Google</a>
+          </div>
+        </div>
+        <ul class="reviews-list" aria-label="Textos das avaliações" hidden></ul>
+        <template id="review-card-template">
+          <li class="review-card" data-review-enter>
+            <div class="review-card-header">
+              <strong data-review-author></strong>
+              <time></time>
+            </div>
+            <span class="reviews-stars" role="img"></span>
+            <p data-review-text></p>
+          </li>
+        </template>
       </div>
     </section>
 
